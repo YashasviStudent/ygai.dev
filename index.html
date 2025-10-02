@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YGAI - The Future of AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: #0A0A0A;
+        }
+
+        .aurora-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .aurora-bg::before,
+        .aurora-bg::after {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            opacity: 0.2;
+            mix-blend-mode: screen;
+            filter: blur(100px);
+            animation: pulse 15s infinite ease-in-out;
+        }
+
+        .aurora-bg::before {
+            background: radial-gradient(circle at center, #4F46E5, transparent 60%);
+            top: -20%;
+            left: -10%;
+        }
+
+        .aurora-bg::after {
+            background: radial-gradient(circle at center, #7C3AED, transparent 60%);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -7.5s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(15deg); }
+        }
+
+        .glassmorphism {
+            background: rgba(17, 24, 39, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .card-border-glow {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.25rem; /* slightly larger than content */
+        }
+
+        .card-border-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1.25rem;
+            border: 2px solid transparent;
+            background: conic-gradient(from 180deg at 50% 50%, #7C3AED 0deg, #4F46E5 120deg, #22D3EE 240deg, #7C3AED 360deg) border-box;
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .card-border-glow:hover::before {
+            opacity: 1;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-h1 { animation-delay: 200ms; }
+        .hero-p { animation-delay: 400ms; }
+        .hero-btn { animation-delay: 600ms; }
+
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-indigo-500 selection:text-white">
+
+    <div class="relative overflow-hidden">
+        <div class="aurora-bg"></div>
+
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-gray-800/50">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-3xl font-bold text-white tracking-tighter">
+                    YG<span class="text-indigo-400">AI</span>
+                </a>
+                <nav id="nav-menu" class="flex items-center space-x-6">
+                    <a href="#products" class="hidden md:inline hover:text-indigo-300 transition-colors duration-300">Products</a>
+                    <button id="signUpBtnHeader" class="bg-indigo-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105">
+                        Sign Up
+                    </button>
+                    <div id="loggedInState" class="hidden items-center space-x-3">
+                         <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                         </span>
+                        <span class="text-white font-medium">Active</span>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="pt-24">
+            <!-- Hero Section -->
+            <section class="relative">
+                <div class="container mx-auto px-6 py-28 md:py-40 text-center">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tighter fade-in hero-h1">
+                        Pioneering the Next<br class="hidden md:block" />
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400">
+                            AI Frontier
+                        </span>
+                    </h1>
+                    <p class="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-gray-400 fade-in hero-p">
+                        YGAI provides state-of-the-art AI models and tools designed to push the boundaries of creativity and innovation.
+                    </p>
+                    <div class="mt-12 fade-in hero-btn">
+                        <a href="#products" class="bg-white text-gray-900 font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-indigo-500/20">
+                            Explore Models
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in" style="animation-delay: 800ms;">Powering the Next Generation of Apps</h2>
+                        <p class="mt-4 text-gray-400 max-w-2xl mx-auto fade-in" style="animation-delay: 900ms;">Built for reliability, scalability, and unparalleled performance.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto fade-in" style="animation-delay: 1000ms;">
+                        <!-- Feature 1: 99.99% Uptime -->
+                        <div class="glassmorphism p-8 rounded-xl text-center">
+                            <div class="mx-auto bg-gray-800 h-16 w-16 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-5">99.99% Uptime</h3>
+                            <p class="text-gray-400 mt-2">Reliable infrastructure that you can count on, ensuring your projects are always online.</p>
+                        </div>
+
+                        <!-- Feature 2: Free Trial Offer -->
+                        <div class="glassmorphism p-8 rounded-xl text-center border-2 border-indigo-500/50 ring-4 ring-indigo-500/10">
+                            <div class="mx-auto bg-indigo-500/20 h-16 w-16 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-5">Start For Free</h3>
+                            <p class="text-gray-300 mt-2">Explore our models and start creating with a generous free tier. No credit card required.</p>
+                        </div>
+
+                        <!-- Feature 3: Developer API -->
+                         <div class="glassmorphism p-8 rounded-xl text-center">
+                             <div class="mx-auto bg-gray-800 h-16 w-16 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-5">Developer-First API</h3>
+                            <p class="text-gray-400 mt-2">Easy to integrate, powerful, and well-documented API to bring your ideas to life.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in" style="animation-delay: 1200ms;">Our Flagship Products</h2>
+                        <p class="mt-4 text-gray-400 max-w-2xl mx-auto fade-in" style="animation-delay: 1300ms;">Sign up is required to access our powerful suite of AI tools.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto fade-in" style="animation-delay: 1400ms;">
+                        <!-- Product Card 1: YG AI -->
+                        <div class="card-border-glow">
+                            <div class="product-card h-full glassmorphism p-8 rounded-xl transition-transform duration-300 hover:scale-[1.02]" data-product-id="ygai" data-redirect-url="https://ai.yghosting.xyz">
+                                <div class="flex items-center space-x-4 mb-5">
+                                    <div class="bg-gradient-to-br from-indigo-500 to-violet-600 p-3 rounded-lg shadow-lg shadow-indigo-500/30">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75a4.5 4.5 0 01-4.5 4.5H12a4.5 4.5 0 01-4.5-4.5m8.364 4.043a4.5 4.5 0 01-8.364 0M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-3.314-2.686-6-6-6s-6 2.686-6 6c0 1.506.556 2.884 1.465 3.965m1.535 2.07A11.95 11.95 0 0012 21a11.95 11.95 0 005.478-1.501m-10.956-2.07A11.95 11.95 0 0112 3a11.95 11.95 0 015.478 1.501" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-white">YG AI</h3>
+                                </div>
+                                <p class="text-gray-400 mb-8 text-base leading-relaxed">
+                                    Our proprietary LLM, trained on 100% Reddit data to understand culture, humor, and niche topics. <span class="text-indigo-300 font-semibold">Completely free to use.</span>
+                                </p>
+                                <button class="access-btn w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105">
+                                    Access Model
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2: Minecraft Plugin Maker -->
+                         <div class="card-border-glow">
+                            <div class="product-card h-full glassmorphism p-8 rounded-xl transition-transform duration-300 hover:scale-[1.02]" data-product-id="minecraft" data-redirect-url="https://plmaker.ygai.dev/">
+                                <div class="flex items-center space-x-4 mb-5">
+                                    <div class="bg-gradient-to-br from-indigo-500 to-violet-600 p-3 rounded-lg shadow-lg shadow-indigo-500/30">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7l8 4" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-white">AI Plugin Maker</h3>
+                                </div>
+                                <p class="text-gray-400 mb-8 text-base leading-relaxed">
+                                    Generate complex Minecraft plugins for any server by describing what you want. Your first <span class="font-bold text-indigo-300">3 generations are free.</span>
+                                </p>
+                                <button class="access-btn w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105">
+                                    Start Creating
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-800/50 mt-20">
+            <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+                <p>&copy; 2024 YGAI. All Rights Reserved. Not a real company.</p>
+            </div>
+        </footer>
+
+        <!-- Sign Up Modal -->
+        <div id="signUpModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden">
+            <div id="modalContent" class="glassmorphism w-full max-w-md p-8 rounded-2xl border border-gray-700/80 m-4 shadow-2xl shadow-black/50">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-white">Create your YGAI Account</h2>
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-white text-3xl">&times;</button>
+                </div>
+                <form id="signUpForm">
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full bg-gray-900/50 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300" placeholder="you@example.com">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium text-gray-400 mb-2">Password</label>
+                        <input type="password" id="password" name="password" required class="w-full bg-gray-900/50 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+                    </div>
+                    <div id="errorMessage" class="text-red-400 text-sm mb-4 hidden"></div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:from-indigo-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- STATE ---
+            let isLoggedIn = false;
+            let productToAccess = null; // Store which product was clicked
+
+            // --- DOM ELEMENTS ---
+            const signUpModal = document.getElementById('signUpModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const signUpForm = document.getElementById('signUpForm');
+            const signUpBtnHeader = document.getElementById('signUpBtnHeader');
+            const loggedInState = document.getElementById('loggedInState');
+            const accessBtns = document.querySelectorAll('.access-btn');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // --- FUNCTIONS ---
+            const openModal = () => {
+                signUpModal.classList.remove('hidden');
+            };
+
+            const closeModal = () => {
+                signUpModal.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+                signUpForm.reset();
+            };
+            
+            const updateUIForLogin = () => {
+                signUpBtnHeader.classList.add('hidden');
+                loggedInState.classList.remove('hidden');
+                loggedInState.classList.add('flex');
+
+                accessBtns.forEach(btn => {
+                    const card = btn.closest('.product-card');
+                    if (card.dataset.productId === 'minecraft') {
+                         btn.textContent = 'Launch Plugin Maker';
+                    } else {
+                         btn.textContent = 'Launch YG AI';
+                    }
+                    btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
+                    btn.classList.add('bg-green-600', 'hover:bg-green-500');
+                });
+            };
+            
+            const handleAccessAttempt = (card) => {
+                productToAccess = card;
+                if (isLoggedIn) {
+                    window.open(productToAccess.dataset.redirectUrl, '_blank');
+                } else {
+                    openModal();
+                }
+            };
+            
+            // --- EVENT LISTENERS ---
+            signUpBtnHeader.addEventListener('click', openModal);
+
+            accessBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const card = btn.closest('.product-card');
+                    handleAccessAttempt(card);
+                });
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+            signUpModal.addEventListener('click', (e) => {
+                if (e.target === signUpModal) {
+                    closeModal();
+                }
+            });
+
+            signUpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                if (!email || !password) {
+                    errorMessage.textContent = 'Please fill out both fields.';
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+                
+                isLoggedIn = true;
+                updateUIForLogin();
+                closeModal();
+                
+                if (productToAccess) {
+                    setTimeout(() => {
+                         window.open(productToAccess.dataset.redirectUrl, '_blank');
+                         productToAccess = null;
+                    }, 300);
+                }
+            });
+
+            // Intersection Observer for fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
