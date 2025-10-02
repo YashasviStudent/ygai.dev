@@ -125,16 +125,7 @@
                 </a>
                 <nav id="nav-menu" class="flex items-center space-x-6">
                     <a href="#products" class="hidden md:inline hover:text-indigo-300 transition-colors duration-300">Products</a>
-                    <button id="signUpBtnHeader" class="bg-indigo-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105">
-                        Sign Up
-                    </button>
-                    <div id="loggedInState" class="hidden items-center space-x-3">
-                         <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                         </span>
-                        <span class="text-white font-medium">Active</span>
-                    </div>
+                     <a href="#features" class="hidden md:inline hover:text-indigo-300 transition-colors duration-300">Features</a>
                 </nav>
             </div>
         </header>
@@ -203,7 +194,7 @@
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
                         <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in" style="animation-delay: 1200ms;">Our Flagship Products</h2>
-                        <p class="mt-4 text-gray-400 max-w-2xl mx-auto fade-in" style="animation-delay: 1300ms;">Sign up is required to access our powerful suite of AI tools.</p>
+                        <p class="mt-4 text-gray-400 max-w-2xl mx-auto fade-in" style="animation-delay: 1300ms;">Explore our powerful suite of AI tools.</p>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto fade-in" style="animation-delay: 1400ms;">
@@ -258,123 +249,24 @@
                 <p>&copy; 2024 YGAI. All Rights Reserved. Not a real company.</p>
             </div>
         </footer>
-
-        <!-- Sign Up Modal -->
-        <div id="signUpModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden">
-            <div id="modalContent" class="glassmorphism w-full max-w-md p-8 rounded-2xl border border-gray-700/80 m-4 shadow-2xl shadow-black/50">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-white">Create your YGAI Account</h2>
-                    <button id="closeModalBtn" class="text-gray-400 hover:text-white text-3xl">&times;</button>
-                </div>
-                <form id="signUpForm">
-                    <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" required class="w-full bg-gray-900/50 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300" placeholder="you@example.com">
-                    </div>
-                    <div class="mb-6">
-                        <label for="password" class="block text-sm font-medium text-gray-400 mb-2">Password</label>
-                        <input type="password" id="password" name="password" required class="w-full bg-gray-900/50 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-300" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
-                    </div>
-                    <div id="errorMessage" class="text-red-400 text-sm mb-4 hidden"></div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:from-indigo-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105">
-                        Create Account
-                    </button>
-                </form>
-            </div>
-        </div>
     </div>
 
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- STATE ---
-            let isLoggedIn = false;
-            let productToAccess = null; // Store which product was clicked
-
             // --- DOM ELEMENTS ---
-            const signUpModal = document.getElementById('signUpModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const signUpForm = document.getElementById('signUpForm');
-            const signUpBtnHeader = document.getElementById('signUpBtnHeader');
-            const loggedInState = document.getElementById('loggedInState');
             const accessBtns = document.querySelectorAll('.access-btn');
-            const errorMessage = document.getElementById('errorMessage');
 
-            // --- FUNCTIONS ---
-            const openModal = () => {
-                signUpModal.classList.remove('hidden');
-            };
-
-            const closeModal = () => {
-                signUpModal.classList.add('hidden');
-                errorMessage.classList.add('hidden');
-                signUpForm.reset();
-            };
-            
-            const updateUIForLogin = () => {
-                signUpBtnHeader.classList.add('hidden');
-                loggedInState.classList.remove('hidden');
-                loggedInState.classList.add('flex');
-
-                accessBtns.forEach(btn => {
-                    const card = btn.closest('.product-card');
-                    if (card.dataset.productId === 'minecraft') {
-                         btn.textContent = 'Launch Plugin Maker';
-                    } else {
-                         btn.textContent = 'Launch YG AI';
-                    }
-                    btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
-                    btn.classList.add('bg-green-600', 'hover:bg-green-500');
-                });
-            };
-            
-            const handleAccessAttempt = (card) => {
-                productToAccess = card;
-                if (isLoggedIn) {
-                    window.open(productToAccess.dataset.redirectUrl, '_blank');
-                } else {
-                    openModal();
-                }
-            };
-            
             // --- EVENT LISTENERS ---
-            signUpBtnHeader.addEventListener('click', openModal);
-
             accessBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
+                    // Find the parent card element to get the redirect URL
                     const card = btn.closest('.product-card');
-                    handleAccessAttempt(card);
+                    if (card && card.dataset.redirectUrl) {
+                        // Open the URL in a new tab
+                        window.open(card.dataset.redirectUrl, '_blank');
+                    }
                 });
-            });
-
-            closeModalBtn.addEventListener('click', closeModal);
-            signUpModal.addEventListener('click', (e) => {
-                if (e.target === signUpModal) {
-                    closeModal();
-                }
-            });
-
-            signUpForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-
-                if (!email || !password) {
-                    errorMessage.textContent = 'Please fill out both fields.';
-                    errorMessage.classList.remove('hidden');
-                    return;
-                }
-                
-                isLoggedIn = true;
-                updateUIForLogin();
-                closeModal();
-                
-                if (productToAccess) {
-                    setTimeout(() => {
-                         window.open(productToAccess.dataset.redirectUrl, '_blank');
-                         productToAccess = null;
-                    }, 300);
-                }
             });
 
             // Intersection Observer for fade-in animations
